@@ -1,4 +1,6 @@
+require('dotenv').config();
 const express = require('express');
+
 const mongoose = require('mongoose');
 const Product = require('./models/product.model.js');
 const productRoute = require("./routes/product.route.js")
@@ -15,7 +17,7 @@ app.get('/', (req, res) => {
     res.send('Hello from Node Updated!')
 });
 
-mongoose.connect("mongodb+srv://admin:t1tCPAxEdsPNTQCl@backend-db.fnorrcn.mongodb.net/Node-API?retryWrites=true&w=majority&appName=Backend-DB")
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING)
 .then(() => {
     console.log("Connected to the database!");
     app.listen(3000, () => {
